@@ -239,6 +239,11 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.action_map:
                 openLocationInMap();
                 return true;
+
+            case R.id.action_settings:
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
         }
 
 
