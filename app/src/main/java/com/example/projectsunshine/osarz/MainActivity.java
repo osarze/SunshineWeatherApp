@@ -159,22 +159,20 @@ public class MainActivity extends AppCompatActivity implements
      * This method is overridden by our MainActivity class in order to handle RecyclerView item
      * clicks.
      *
-     * @param weatherForDay The weather for the day that was clicked
+     * @param date The weather for the day that was clicked
      */
     @Override
     public void onClick(long date) {
-        Context context = this;
-        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+        Intent weatherDetailIntent = new Intent(MainActivity.this, DetailActivity.class);
         Uri uriForDateClicked = WeatherEntry.buildWeatherUriWithDate(date);
-
-        intent.putExtra("DAY_WEATHER", uriForDateClicked);
-        startActivity(intent);
+        weatherDetailIntent.setData(uriForDateClicked);
+        startActivity(weatherDetailIntent);
     }
 
     private void showWeatherDataView() {
-        /* First, make sure the error is invisible */
-        mErrorMessageDisplay.setVisibility(View.INVISIBLE);
-        /* Then, make sure the weather data is visible */
+        /* First, hide the loading indicator */
+        mLoadingIndicator.setVisibility(View.INVISIBLE);
+        /* Finally, make sure the weather data is visible */
         mRecyclerView.setVisibility(View.VISIBLE);
     }
 
